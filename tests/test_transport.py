@@ -30,6 +30,7 @@ def load_transport():
     }
     spec = importlib.util.spec_from_file_location("stock_test.transport", Path(test_provider.package.__path__[0]) / "__init__.py")
     module = importlib.util.module_from_spec(spec)
+    module.__package__ = "stock_test"
     with patch.dict(sys.modules, modules):
         spec.loader.exec_module(module)
     return module
