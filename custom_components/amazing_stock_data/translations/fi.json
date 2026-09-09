@@ -1,0 +1,6 @@
+{
+  "config": {
+    "step": {"user": {"title": "Amazing Stock Data", "description": "Ota Avanzan julkinen kurssihistoria käyttöön Amazing Stock Cardissa. Tiliä tai API-avainta ei tarvita. Valitse kohteet kortin editorissa. Tietojen viive ja saatavuus riippuvat edelleen Avanzasta."}},
+    "abort": {"already_configured": "Amazing Stock Data on jo määritetty."}
+  }
+}
