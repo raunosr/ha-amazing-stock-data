@@ -28,7 +28,10 @@ class HistoryError(Exception):
 
 def finite_number(value):
     """JSON booleans and strings are not prices or timestamps."""
-    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+    try:
+        return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+    except OverflowError:
+        return False
 
 
 def parse_chart(payload: dict, metadata: dict, period: str, now: float) -> dict:
@@ -46,7 +49,11 @@ def parse_chart(payload: dict, metadata: dict, period: str, now: float) -> dict:
         points[timestamp] = {"time": timestamp, "value": value if finite_number(value) else None}
     ordered = sorted(points.values(), key=lambda point: point["time"])
     valid = [point for point in ordered if point["value"] is not None]
-    resolution = payload.get("metadata", {}).get("resolution", {}).get("chartResolution", "")
+    details = payload.get("metadata")
+    details = details.get("resolution") if isinstance(details, dict) else None
+    resolution = details.get("chartResolution", "") if isinstance(details, dict) else ""
+    if not isinstance(resolution, str):
+        resolution = ""
     if resolution not in {"minute", "two_minutes", "five_minutes", "ten_minutes", "thirty_minutes", "hour", "day", "week", "month", "quarter"}:
         resolution = ""
     # Chart endpoints are actual samples, never a synthetic current-price point.
