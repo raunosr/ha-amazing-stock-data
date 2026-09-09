@@ -1,0 +1,13 @@
+{
+  "domain": "amazing_stock_data",
+  "name": "Amazing Stock Data",
+  "codeowners": ["@raunosr"],
+  "config_flow": true,
+  "dependencies": ["websocket_api"],
+  "documentation": "https://github.com/raunosr/ha-amazing-stock-data",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/raunosr/ha-amazing-stock-data/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

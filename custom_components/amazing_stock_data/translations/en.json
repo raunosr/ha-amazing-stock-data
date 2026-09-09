@@ -1,0 +1,6 @@
+{
+  "config": {
+    "step": {"user": {"title": "Amazing Stock Data", "description": "Enable public Avanza price history for Amazing Stock Card. No account or API key is needed. Select instruments in the card editor. Market-data delays and availability remain controlled by Avanza."}},
+    "abort": {"already_configured": "Amazing Stock Data is already configured."}
+  }
+}
